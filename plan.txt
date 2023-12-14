@@ -1,0 +1,44 @@
++ Login 
+
++ Type group id: search for the id in database
+
+        + if id is in db --> print all messages 
+
+        + else --> add new document to db   
+
+        + setRoomId()
+
+        + useEffect()
+
+            roomId ? <RoomChatScreen /> : <RoomIdScreen />
+
++ Chat box pops up
+
+    + Get all docs 
+
+    + Print
+
++ User sends messages 
+
+    async function createDocument() {
+		await addDoc(collection, {})
+	}
+
+
+
+
++ Components 
+
+    + Room 
+
+        + RoomIdScreen
+
+        + RoomChatScreen
+
+            {
+                roomId: 123, 
+                messages: [
+                    {userId: 333, message: ""},
+                    {userId: 334, message: ""}
+                ]
+            }

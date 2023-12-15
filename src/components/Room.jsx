@@ -3,12 +3,16 @@ import { RoomChatScreen } from "./RoomChatScreen"
 
 import { roomsFireStoreCollection } from "../firebase"
 import { addDoc, onSnapshot } from "firebase/firestore"
+import { v4 } from "uuid"
 
 import { useEffect, useState } from "react"
 
 export function Room() {
     const [roomId, setRoomId] = useState(null)
     const [existingRooms, setExistingRooms] = useState(null)
+    // Hard code users
+    const [currentUser, setCurrentUser] = useState(() => new Date().getTime())
+    console.log(currentUser)
 
     let currentRoomObject = (roomId && existingRooms) && existingRooms.find(room => room.roomId == roomId)
     let currentRoomMessages = currentRoomObject && currentRoomObject.messages
@@ -45,7 +49,7 @@ export function Room() {
 
     return (
         <>
-            {roomId ? <RoomChatScreen roomDocId={currentRoomDocId} roomId={roomId} currentRoomMessages={currentRoomMessages}/> : <PickRoomIdScreen enterRoomFunc={checkRoomId}/>}
+            {roomId ? <RoomChatScreen roomDocId={currentRoomDocId} roomId={roomId} currentUser={currentUser} currentRoomMessages={currentRoomMessages}/> : <PickRoomIdScreen enterRoomFunc={checkRoomId}/>}
         </>
     )
 }

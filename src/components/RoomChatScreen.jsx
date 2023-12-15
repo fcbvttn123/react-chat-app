@@ -12,7 +12,7 @@ export function RoomChatScreen(props) {
     function pushNewMsg(onSubmitEventInfo) {
         onSubmitEventInfo.preventDefault()
         setMsgHistory(prev => [...prev, {
-            userId: 333,
+            userId: props.currentUser,
             message: currentMsg
         }])
     }

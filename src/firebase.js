@@ -17,3 +17,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app)
 export const roomsFireStoreCollection = collection(db, "rooms")
+
+
+
+
+// Realtime Database
+
+import {getDatabase, ref, set, onValue} from "firebase/database"
+export const realtimeDb = getDatabase()
+
+function readData(id) {
+  const reference = ref(realtimeDb, `rooms`)
+  onValue(reference, snapShot => {
+    console.log(snapShot.val())
+  })
+}
+
+export function writeData(realTimeDb, path, value) {
+  const reference = ref(realTimeDb, path)
+  set(reference, value)
+}

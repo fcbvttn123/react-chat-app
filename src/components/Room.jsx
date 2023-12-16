@@ -17,14 +17,14 @@ export function Room() {
     let currentRoomMessages = currentRoomObject && currentRoomObject.messages
     let currentRoomDocId = (roomId && existingRooms) && existingRooms.find(room => room.roomId == roomId)?.id;
 
-    function checkRoomId(roomId, eventInfo) {
-        eventInfo.preventDefault()
-        let roomIsExisting = existingRooms.find(room => room.roomId == roomId)
-        if(roomIsExisting) {
-            setRoomId(roomId)
-        } else {
-            createDocument(roomId)
-        }
+    function checkRoomId(roomId) {
+        // let roomIsExisting = existingRooms.find(room => room.roomId == roomId)
+        // if(roomIsExisting) {
+        //     setRoomId(roomId)
+        // } else {
+        //     createDocument(roomId)
+        // }
+        console.log(roomId)
     }
 
     async function createDocument(roomId) {
@@ -35,20 +35,21 @@ export function Room() {
     }
 
     useEffect(() => {
-        const unsubscribe = onSnapshot(roomsFireStoreCollection, snapShot => {
-            setExistingRooms(snapShot.docs.map(doc => {
-                return {
-                    ...doc.data(),
-                    id: doc.id
-                }
-            }));
-        })
-        return unsubscribe
+        
     }, [])
 
     return (
-        <>
-            {roomId ? <RoomChatScreen roomDocId={currentRoomDocId} roomId={roomId} currentUser={currentUser} currentRoomMessages={currentRoomMessages}/> : <PickRoomIdScreen enterRoomFunc={checkRoomId}/>}
-        </>
-    )
+      <>
+        {roomId ? (
+          <RoomChatScreen
+            roomDocId={currentRoomDocId}
+            roomId={roomId}
+            currentUser={currentUser}
+            currentRoomMessages={currentRoomMessages}
+          />
+        ) : (
+          <PickRoomIdScreen submitRoomId={checkRoomId} />
+        )}
+      </>
+    );
 }

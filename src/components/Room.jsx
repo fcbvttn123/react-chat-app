@@ -12,7 +12,6 @@ export function Room() {
     const [existingRooms, setExistingRooms] = useState(null)
     // Hard code users
     const [currentUser, setCurrentUser] = useState(() => new Date().getTime())
-    console.log(currentUser)
 
     let currentRoomObject = (roomId && existingRooms) && existingRooms.find(room => room.roomId == roomId)
     let currentRoomMessages = currentRoomObject && currentRoomObject.messages

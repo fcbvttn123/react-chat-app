@@ -36,9 +36,29 @@
         + RoomChatScreen
 
             {
-                roomId: 123, 
-                messages: [
-                    {userId: 333, message: ""},
-                    {userId: 334, message: ""}
-                ]
+                "123": {
+                    "messages": {
+                        "message1": {
+                            "userId": 333,
+                            "message": "Hello, how are you?"
+                        },
+                        "message2": {
+                            "userId": 334,
+                            "message": "I'm doing well, thank you!"
+                        }
+                    }
+                },
+
+                "124": {
+                    "messages": {
+                        "message1": {
+                            "userId": 55,
+                            "message": "Hi there!"
+                        },
+                        "message2": {
+                            "userId": 33,
+                            "message": "Hello!"
+                        }
+                    }
+                }
             }

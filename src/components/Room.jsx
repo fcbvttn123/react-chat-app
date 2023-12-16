@@ -2,10 +2,14 @@ import { PickRoomIdScreen } from "./PickRoomIdScreen"
 import { RoomChatScreen } from "./RoomChatScreen"
 
 import { roomsFireStoreCollection } from "../firebase"
-import { addDoc, onSnapshot } from "firebase/firestore"
+import { addDoc, onSnapshot, snapshotEqual } from "firebase/firestore"
 import { v4 } from "uuid"
 
 import { useEffect, useState } from "react"
+
+// Realtime DB
+import { realtimeDb } from "../firebase"
+import {ref, onValue} from "firebase/database"
 
 export function Room() {
     const [roomId, setRoomId] = useState(null)
@@ -24,7 +28,6 @@ export function Room() {
         // } else {
         //     createDocument(roomId)
         // }
-        console.log(roomId)
     }
 
     async function createDocument(roomId) {
@@ -35,7 +38,16 @@ export function Room() {
     }
 
     useEffect(() => {
-        
+        const reference = ref(realtimeDb, "rooms")
+        onValue(reference, snapShot => {
+            let data = snapShot.val()
+            console.log("")
+            console.log(data)
+            Object.keys(data).forEach(room => {
+                console.log(`Room ${snapShot.key}`)
+                console.log(data[room])
+            })
+        })
     }, [])
 
     return (

@@ -18,7 +18,8 @@ export function RoomChatScreen(props) {
         submitEvent.preventDefault()
         pushNewMessage({
             userId: props.userId, 
-            message: inputValue
+            message: inputValue, 
+            time: new Date().getTime()
         })
         setInputValue("")
     }
@@ -35,7 +36,7 @@ export function RoomChatScreen(props) {
             snapShot.forEach(child => {
                 msgArr.push(child.val())
             })
-            setAllMessages(msgArr)
+            setAllMessages(msgArr.sort((a, b) => a.time - b.time))
         })
     }
 
@@ -47,7 +48,7 @@ export function RoomChatScreen(props) {
         <div className="room-chat-box">
             <h1>Room ID: {props.roomId}</h1>
             <form className="message-input-box" onSubmit={(e) => {sendMessage(e)}}>
-                <input type="text" name="message" id="message"  onChange={e => setInputValue(e.target.value)}/>
+                <input type="text" name="message" id="message" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
                 <button>Send</button>
             </form>
             <div className="display-msg">

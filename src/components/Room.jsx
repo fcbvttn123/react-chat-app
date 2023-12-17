@@ -31,7 +31,8 @@ export function Room() {
       set(reference, {
         message1: {
           userId: currentUser, 
-          message: `${currentUser} created this room`
+          message: `${currentUser} created this room`,
+          time: new Date().getTime()
         }
       })
     }

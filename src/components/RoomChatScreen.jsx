@@ -12,8 +12,23 @@ import {ref, onValue, set} from "firebase/database"
 export function RoomChatScreen(props) {
 
     const [allMessages, setAllMessages] = useState(null)
+    const [inputValue, setInputValue] = useState("")
 
-    useEffect(() => {
+    function sendMessage(submitEvent) {
+        submitEvent.preventDefault()
+        pushNewMessage({
+            userId: props.userId, 
+            message: inputValue
+        })
+        setInputValue("")
+    }
+
+    function pushNewMessage(obj) {
+        const reference = ref(realtimeDb, `rooms/${props.roomId}/messages/${v4()}`)
+        set(reference, obj)
+    }
+
+    function getMessages() {
         let reference = ref(realtimeDb, `rooms/${props.roomId}/messages`)
         onValue(reference, snapShot => {
             let msgArr = []
@@ -22,13 +37,17 @@ export function RoomChatScreen(props) {
             })
             setAllMessages(msgArr)
         })
+    }
+
+    useEffect(() => {
+        getMessages()
     }, [])
     
     return (
         <div className="room-chat-box">
             <h1>Room ID: {props.roomId}</h1>
-            <form className="message-input-box">
-                <input type="text" name="message" id="message" />
+            <form className="message-input-box" onSubmit={(e) => {sendMessage(e)}}>
+                <input type="text" name="message" id="message"  onChange={e => setInputValue(e.target.value)}/>
                 <button>Send</button>
             </form>
             <div className="display-msg">

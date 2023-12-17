@@ -31,7 +31,7 @@ export function Room() {
       set(reference, {
         message1: {
           userId: currentUser, 
-          messageContent: ""
+          message: `${currentUser} created this room`
         }
       })
     }
@@ -50,7 +50,7 @@ export function Room() {
     return (
       <>
         {currentRoom ? (
-          <RoomChatScreen roomId={currentRoom}/>
+          <RoomChatScreen roomId={currentRoom} userId={currentUser}/>
         ) : (
           <PickRoomIdScreen submitRoomId={checkRoomId} />
         )}

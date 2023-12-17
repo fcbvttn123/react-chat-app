@@ -9,56 +9,48 @@ import { useEffect, useState } from "react"
 
 // Realtime DB
 import { realtimeDb } from "../firebase"
-import {ref, onValue} from "firebase/database"
+import {ref, onValue, set} from "firebase/database"
 
 export function Room() {
-    const [roomId, setRoomId] = useState(null)
+    const [currentRoom, setCurrentRoom] = useState(null)
     const [existingRooms, setExistingRooms] = useState(null)
     // Hard code users
     const [currentUser, setCurrentUser] = useState(() => new Date().getTime())
 
-    let currentRoomObject = (roomId && existingRooms) && existingRooms.find(room => room.roomId == roomId)
-    let currentRoomMessages = currentRoomObject && currentRoomObject.messages
-    let currentRoomDocId = (roomId && existingRooms) && existingRooms.find(room => room.roomId == roomId)?.id;
-
     function checkRoomId(roomId) {
-        // let roomIsExisting = existingRooms.find(room => room.roomId == roomId)
-        // if(roomIsExisting) {
-        //     setRoomId(roomId)
-        // } else {
-        //     createDocument(roomId)
-        // }
+        let roomIsExisting = existingRooms.find(room => room == roomId)
+        if(roomIsExisting) {
+          setCurrentRoom(roomId)
+        } else {
+          createNewRoom(roomId)
+        }
     }
 
-    async function createDocument(roomId) {
-        await addDoc(roomsFireStoreCollection, {
-            roomId: roomId, 
-            messages: []
-        })
+    function createNewRoom(roomId) {
+      let reference = ref(realtimeDb, `rooms/${roomId}/messages`)
+      set(reference, {
+        message1: {
+          userId: currentUser, 
+          messageContent: ""
+        }
+      })
     }
 
     useEffect(() => {
         const reference = ref(realtimeDb, "rooms")
         onValue(reference, snapShot => {
-            let data = snapShot.val()
-            console.log("")
-            console.log(data)
-            Object.keys(data).forEach(room => {
-                console.log(`Room ${snapShot.key}`)
-                console.log(data[room])
+            let roomArray = []
+            snapShot.forEach(child => {
+              roomArray.push(child.key)
             })
+            setExistingRooms(roomArray)
         })
     }, [])
 
     return (
       <>
-        {roomId ? (
-          <RoomChatScreen
-            roomDocId={currentRoomDocId}
-            roomId={roomId}
-            currentUser={currentUser}
-            currentRoomMessages={currentRoomMessages}
-          />
+        {currentRoom ? (
+          <RoomChatScreen roomId={currentRoom}/>
         ) : (
           <PickRoomIdScreen submitRoomId={checkRoomId} />
         )}

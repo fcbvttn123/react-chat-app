@@ -11,6 +11,8 @@ export function SignInForm(props) {
         password: ""
     })
 
+    const [invalidCredentials, setInvalidCredentials] = useState(false)
+
     function handleFormDataChanged(e) {
         const {name, value} = e.target
         setSignInFormData(prev => {
@@ -26,9 +28,11 @@ export function SignInForm(props) {
         const reference = ref(realtimeDb, `accounts/${signInFormData.username}`)
         onValue(reference, snapShot => {
             if(snapShot.val() && snapShot.val().password == signInFormData.password) {
-                console.log("Valid")
+              console.log("Valid")
+              setInvalidCredentials(false)
             } else {
-                console.log("Invalid")
+              console.log("Invalid")
+              setInvalidCredentials(true)
             }
         })
         setSignInFormData({
@@ -39,7 +43,9 @@ export function SignInForm(props) {
 
     return (
       <div className="sign-in-form">
+
         <h1>Log In</h1>
+
         {/* Form */}
         <form onSubmit={submitForm}>
           <input
@@ -62,6 +68,7 @@ export function SignInForm(props) {
           <br />
           <button>Login</button> <br />
         </form>
+
         {/* Sign Up Container */}
         <div className="sign-up-container">
           <span>Not a Member ?</span>
@@ -72,6 +79,9 @@ export function SignInForm(props) {
             Sign Up now
           </button>
         </div>
+
+        {invalidCredentials && <p>Your username or password is incorrect</p>}
+
       </div>
     );
 

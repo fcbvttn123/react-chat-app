@@ -1,10 +1,6 @@
 import { PickRoomIdScreen } from "./PickRoomIdScreen"
 import { RoomChatScreen } from "./RoomChatScreen"
 
-import { roomsFireStoreCollection } from "../firebase"
-import { addDoc, onSnapshot, snapshotEqual } from "firebase/firestore"
-import { v4 } from "uuid"
-
 import { useEffect, useState } from "react"
 
 // Realtime DB
@@ -35,6 +31,7 @@ export function Room() {
           time: new Date().getTime()
         }
       })
+      setCurrentRoom(roomId)
     }
 
     useEffect(() => {

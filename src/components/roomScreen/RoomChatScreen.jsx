@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 
-import { roomsFireStoreCollection, db } from "../firebase"
+import { roomsFireStoreCollection, db } from "../../firebase"
 import { setDoc, doc, snapshotEqual } from "firebase/firestore"
 
 import { v4 } from "uuid"
 
 // Realtime DB
-import { realtimeDb } from "../firebase"
+import { realtimeDb } from "../../firebase"
 import {ref, onValue, set} from "firebase/database"
 
 export function RoomChatScreen(props) {

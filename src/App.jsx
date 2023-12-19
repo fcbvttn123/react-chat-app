@@ -3,11 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { Room } from './components/Room'
+import { SignInScreen } from './components/signInScreen/SignInScreen'
 
 function App() {
   return (
-      <Room />
+    <SignInScreen />
   )
 }
 

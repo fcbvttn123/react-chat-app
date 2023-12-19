@@ -4,7 +4,7 @@ import { RoomChatScreen } from "./RoomChatScreen"
 import { useEffect, useState } from "react"
 
 // Realtime DB
-import { realtimeDb } from "../firebase"
+import { realtimeDb } from "../../firebase"
 import {ref, onValue, set} from "firebase/database"
 
 export function Room() {

@@ -1,5 +1,34 @@
 + Login 
 
+    + Render Login and Signup form conditionally 
+
+    + Login Form: username, password, signup
+
+        + Submit Event 
+
+        + Check if the username is existing in db
+
+            + If it is, move to the "Room" component --> pass userId to it 
+
+            + Else, print "Invalid Credentials"
+
+        + Click Event to signup link
+
+            + Move to the Sign-Up component
+
+    + Signup Form: username, password, sign in
+
+        + Submit event 
+
+        + Create a new username in db
+
+        + Come back to Sign-in Component 
+
+
+
+
+
+
 + Type group id: search for the id in database
 
         + if id is in db --> print all messages 

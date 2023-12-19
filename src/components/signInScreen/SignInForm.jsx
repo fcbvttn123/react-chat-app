@@ -28,14 +28,17 @@ export function SignInForm(props) {
         const reference = ref(realtimeDb, `accounts/${signInFormData.username}`)
         onValue(reference, snapShot => {
             if(snapShot.val() && snapShot.val().password == signInFormData.password) {
+              const passwordReference = ref(realtimeDb, `accounts/${signInFormData.username}/active`)
+              // Update active property of username in database after entering the correct credentials 
+              set(passwordReference, true)
               setInvalidCredentials(false)
             } else {
               setInvalidCredentials(true)
             }
-        })
-        setSignInFormData({
-            username: "", 
-            password: ""
+            setSignInFormData({
+              username: "", 
+              password: ""
+          })
         })
     }
 

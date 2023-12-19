@@ -25,22 +25,3 @@ export const roomsFireStoreCollection = collection(db, "rooms")
 
 import {getDatabase, ref, set, onValue} from "firebase/database"
 export const realtimeDb = getDatabase()
-
-function getRooms() {
-  const reference = ref(realtimeDb, "rooms/")
-  onValue(reference, snapShot => {
-    console.log(snapShot.val())
-  })
-}
-
-export function newRoom(roomId) {
-  const reference = ref(realtimeDb, "rooms/"+roomId)
-  set(reference, {
-    messages: {
-      message1: {
-        userId: 10,
-        message: ""
-      }
-    }
-  });
-}

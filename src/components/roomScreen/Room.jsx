@@ -10,9 +10,8 @@ import {ref, onValue, set} from "firebase/database"
 export function Room(props) {
     const [currentRoom, setCurrentRoom] = useState(null)
     const [existingRooms, setExistingRooms] = useState(null)
-    // Hard code users
+    
     let currentUser = props.username
-    console.log(currentUser)
 
     function checkRoomId(roomId) {
         let roomIsExisting = existingRooms.find(room => room == roomId)

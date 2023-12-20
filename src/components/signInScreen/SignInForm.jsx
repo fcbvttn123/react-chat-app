@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 // Realtime DB
 import { realtimeDb } from "../../firebase"
@@ -11,7 +11,7 @@ export function SignInForm(props) {
         password: ""
     })
 
-    const [invalidCredentials, setInvalidCredentials] = useState(false)
+    const [invalidCredentials, setInvalidCredentials] = useState(null)
 
     function handleFormDataChanged(e) {
         const {name, value} = e.target
@@ -28,18 +28,25 @@ export function SignInForm(props) {
         const reference = ref(realtimeDb, `accounts/${signInFormData.username}`)
         onValue(reference, snapShot => {
             if(snapShot.val() && snapShot.val().password == signInFormData.password) {
-              console.log("Valid")
+              const passwordReference = ref(realtimeDb, `accounts/${signInFormData.username}/active`)
+              // Update active property of username in database after entering the correct credentials 
+              set(passwordReference, true)
               setInvalidCredentials(false)
             } else {
-              console.log("Invalid")
               setInvalidCredentials(true)
             }
-        })
-        setSignInFormData({
-            username: "", 
-            password: ""
+            setSignInFormData({
+              username: "", 
+              password: ""
+          })
         })
     }
+
+    useEffect(() => {
+      if(!invalidCredentials && invalidCredentials !== null) {
+        props.handleScreen("room-screen")
+      }
+    }, [invalidCredentials])
 
     return (
       <div className="sign-in-form">

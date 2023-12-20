@@ -15,19 +15,6 @@ export function SignInScreen(props) {
         setCurrentForm(formName)
     }
 
-    useEffect(() => {
-        let reference = ref(realtimeDb, "accounts")
-        onValue(reference, snapShot => {
-            snapShot.forEach(account => {
-                let accountRef = ref(realtimeDb, `accounts/${account.key}/active`)
-                onValue(accountRef, snapShot2 => {
-                    console.log(snapShot2.val())
-                })
-                // set(accountRef, false)
-            })
-        })
-    }, [])
-
     return (
         <div className="sign-in-screen">
             {currentForm == "sign-in-screen" ? <SignInForm changeForm={changeForm} handleScreen={props.handleScreen} /> : <SignUpForm />}

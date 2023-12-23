@@ -15,19 +15,10 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState("sign-in-screen")
   const [username, setUsername] = useState(null)
 
-  function handleScreen(screen) {
+  function handleScreen(screen, username) {
     setCurrentScreen(screen)
+    screen == "room-screen" && setUsername(username)
   }
-
-  useEffect(() => {
-    const reference = ref(realtimeDb, "accounts/")
-    onValue(reference, snapShot => {
-      snapShot.forEach(e => {
-        let usernameObj = e.val()
-        usernameObj.active && setUsername(usernameObj.username)
-      })
-    })
-  }, [])
 
   return (
     <main className='main-screen'>

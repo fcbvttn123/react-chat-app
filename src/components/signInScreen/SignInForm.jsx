@@ -30,14 +30,8 @@ export function SignInForm(props) {
         snapShot.val() &&
         snapShot.val().password == signInFormData.password
       ) {
-        const passwordReference = ref(
-          realtimeDb,
-          `accounts/${signInFormData.username}/active`
-        );
-        // Update active property of username in database after entering the correct credentials
-        set(passwordReference, true);
         setInvalidCredentials(false);
-        props.handleScreen("room-screen");
+        props.handleScreen("room-screen", signInFormData.username);
       } else {
         setInvalidCredentials(true);
       }

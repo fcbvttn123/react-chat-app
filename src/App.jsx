@@ -6,11 +6,6 @@ import './App.css'
 import { SignInScreen } from './components/signInScreen/SignInScreen'
 import {Room} from "./components/roomScreen/Room"
 
-// Realtime DB
-import { realtimeDb } from './firebase'
-import {ref, onValue, set} from "firebase/database"
-
-
 function App() {
   const [currentScreen, setCurrentScreen] = useState("sign-in-screen")
   const [username, setUsername] = useState(null)

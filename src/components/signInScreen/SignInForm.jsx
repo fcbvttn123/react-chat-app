@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Realtime DB
 import { realtimeDb } from "../../firebase";
-import { ref, onValue, set } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 
 export function SignInForm(props) {
   const [signInFormData, setSignInFormData] = useState({
@@ -68,7 +68,7 @@ export function SignInForm(props) {
       {/* Sign Up Container */}
       <div className="sign-up-container">
         <span>Not a Member ?</span>
-        <button className="sign-up" onClick={() => props.changeForm("sign-up")}>
+        <button className="sign-up" onClick={() => props.changeForm("sign-up-form")}>
           Sign Up now
         </button>
       </div>

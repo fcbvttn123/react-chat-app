@@ -1,15 +1,11 @@
 import { SignInForm } from "./SignInForm"
 import { SignUpForm } from "./SignUpForm"
 
-import { useEffect, useState } from "react"
-
-// Realtime DB
-import { realtimeDb } from "../../firebase"
-import {ref, onValue, set} from "firebase/database"
+import { useState } from "react"
 
 export function SignInScreen(props) {
 
-    const [currentForm, setCurrentForm] = useState("sign-in-screen")
+    const [currentForm, setCurrentForm] = useState("sign-in-form")
 
     function changeForm(formName) {
         setCurrentForm(formName)
@@ -17,21 +13,7 @@ export function SignInScreen(props) {
 
     return (
         <div className="sign-in-screen">
-            {currentForm == "sign-in-screen" ? <SignInForm changeForm={changeForm} handleScreen={props.handleScreen} /> : <SignUpForm />}
+            {currentForm == "sign-in-form" ? <SignInForm changeForm={changeForm} handleScreen={props.handleScreen} /> : <SignUpForm changeForm={changeForm} />}
         </div>
     )
 }
-
-
-
-
-  // useEffect(() => {
-  //   let reference = ref(realtimeDb, "accounts");
-  //   onValue(reference, (snapShot) => {
-  //     let usernames = Object.keys(snapShot.val());
-  //     usernames.forEach((username) => {
-  //       let usernameRef = ref(realtimeDb, `accounts/${username}/active`);
-  //       set(usernameRef, false);
-  //     });
-  //   });
-  // }, []);

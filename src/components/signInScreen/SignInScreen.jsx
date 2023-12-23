@@ -21,3 +21,17 @@ export function SignInScreen(props) {
         </div>
     )
 }
+
+
+
+
+  // useEffect(() => {
+  //   let reference = ref(realtimeDb, "accounts");
+  //   onValue(reference, (snapShot) => {
+  //     let usernames = Object.keys(snapShot.val());
+  //     usernames.forEach((username) => {
+  //       let usernameRef = ref(realtimeDb, `accounts/${username}/active`);
+  //       set(usernameRef, false);
+  //     });
+  //   });
+  // }, []);

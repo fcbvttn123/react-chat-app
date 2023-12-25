@@ -11,7 +11,6 @@ export function SignUpForm(props) {
     })
 
     const [signUpSuccessfully, setSignUpSuccessfully] = useState(false)
-    console.log(signUpSuccessfully)
 
     function handleFormChange(e) {
         let {name, value} = e.target
@@ -60,7 +59,7 @@ export function SignUpForm(props) {
                 <p>Already a member?
                     <button onClick={() => props.changeForm("sign-in-form")}>Log in</button>
                 </p>
-                {signUpSuccessfully && <p>Account Created !!!</p>}
+                {signUpSuccessfully && <p className="account-created-successfully">Account Created !!!</p>}
             </div>
             <form className="form" onSubmit={handleFormSubmit}>
                 <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleFormChange}/> <br />

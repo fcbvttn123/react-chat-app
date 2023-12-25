@@ -1,0 +1,194 @@
+/* Root */
+
+:root {
+    --main-blue-color: rgba(59, 59, 150, 0.979);
+}
+
+body {
+    font-family: sans-serif;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+button {
+    padding: .5rem .5rem;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--main-blue-color);
+    color: white;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+
+
+
+/* Sign In Screen */
+
+.sign-in-screen h1 {
+    background-color: var(--main-blue-color);
+    color: white;
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.sign-in-screen :is(form, .sign-up-container) {
+    margin-left: 1rem;
+}
+
+.sign-in-screen form input[type="password"] {
+    margin: .5rem 0;
+}
+
+.sign-in-screen form button {
+    width: 100px;
+    display: grid;
+    place-content: center;
+}
+
+.sign-in-screen .sign-up-container button {
+    padding: 0;
+    background-color: white;
+    color: black;
+    border:  none;
+    margin-left: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sign-in-screen .sign-up-container button:hover {
+    color: blue;
+}
+
+.invalid-credentials {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: red;
+}
+
+
+
+
+/* Sign Up Screen */
+
+.sign-up-form .text p {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sign-up-form .text p button {
+    padding: 0;
+    background-color: white;
+    color: black;
+    border:  none;
+    margin-left: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sign-up-form .text p button:hover {
+    color: blue;
+}
+
+.account-created-successfully {
+    color: rgb(22, 170, 22);
+    font-weight: bolder;
+}
+
+
+
+
+/* Room ID Screen */
+
+.main-screen .main-header {
+    background-color: var(--main-blue-color);
+    color: white;
+    display: grid;
+    place-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.main-screen .room-id-input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.main-screen .room-id-input-box h1 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.main-screen .room-id-input-box input {
+    margin: 1rem 0;
+}
+
+.main-screen .room-id-input-box button {
+    display: grid;
+    place-content: center;
+}
+
+.main-screen .room-id-input-box :is(button, input) {
+    width: 100%;
+}
+
+
+
+
+/* Room Chat Box Screen */
+
+.chat-box-component {
+    width: 400px;
+    margin: 0 auto;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-box-component form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.chat-box-component form input {
+    width: 100%;
+}
+
+.chat-box-component form button {
+    width: 50px;
+    display: grid;
+    place-content: center;
+}
+
+.chat-box-component form :is(input, button) {
+    margin: 0;
+}
+
+.chat-box-component .display-msg {
+    overflow-y: scroll;
+}
+
+.chat-box-component .display-msg p {
+    margin-bottom: 5px;
+}

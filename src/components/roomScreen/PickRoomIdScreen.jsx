@@ -8,9 +8,13 @@ export function PickRoomIdScreen(props) {
         setInputValue("")
     }
     return (
-        <form className="room-id-input-box" onSubmit={(e) => submitRoomId(e)}>
-            <input type="text" name="room-id" id="room-id" onChange={e => setInputValue(e.target.value)} value={inputValue}/>
-            <button>Enter</button>
-        </form>
+        <>
+            <h1 className="main-header">Chat App</h1>
+            <form className="room-id-input-box" onSubmit={(e) => submitRoomId(e)}>
+                <h1>Type Room ID: </h1>
+                <input type="text" name="room-id" id="room-id" onChange={e => setInputValue(e.target.value)} value={inputValue}/>
+                <button>Enter Chat</button>
+            </form>
+        </>
     )
 }

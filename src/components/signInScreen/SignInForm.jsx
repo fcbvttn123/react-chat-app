@@ -73,7 +73,7 @@ export function SignInForm(props) {
         </button>
       </div>
 
-      {invalidCredentials && <p>Your username or password is incorrect</p>}
+      {invalidCredentials && <p className="invalid-credentials">Your username or password is incorrect</p>}
     </div>
   );
 }

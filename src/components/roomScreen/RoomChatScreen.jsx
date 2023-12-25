@@ -46,13 +46,15 @@ export function RoomChatScreen(props) {
     
     return (
         <div className="room-chat-box">
-            <h1>Room ID: {props.roomId}</h1>
-            <form className="message-input-box" onSubmit={(e) => {sendMessage(e)}}>
-                <input type="text" name="message" id="message" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
-                <button>Send</button>
-            </form>
-            <div className="display-msg">
-                {allMessages && allMessages.map(e => <p key={v4()}>{e.userId}: {e.message}</p>)}
+            <h1 className="main-header">Room ID: {props.roomId}</h1>
+            <div className="chat-box-component">
+                <div className="display-msg">
+                    {allMessages && allMessages.map(e => <p key={v4()}>{e.userId}:   {e.message}</p>)}
+                </div>
+                <form className="message-input-box" onSubmit={(e) => {sendMessage(e)}}>
+                    <input type="text" name="message" id="message" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+                    <button>Send</button>
+                </form>
             </div>
         </div>
     )

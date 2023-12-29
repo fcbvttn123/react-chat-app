@@ -22,7 +22,7 @@ export function PickRoomIdScreen(props) {
                 <input type="text" name="room-id" id="room-id" onChange={e => setInputValue(e.target.value)} value={inputValue}/>
                 <button>Enter Chat</button>
             </form>
-            <button onClick={signOut}>Sign Out</button>
+            <button className="btn-signout" onClick={signOut}>Sign Out</button>
         </>
     )
 }

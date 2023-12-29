@@ -49,14 +49,14 @@ export function RoomChatScreen(props) {
             <h1 className="main-header">Room ID: {props.roomId}</h1>
             <div className="chat-box-component">
                 <div className="display-msg">
-                    {allMessages && allMessages.map(e => <p key={v4()}>{e.userId}:   {e.message}</p>)}
+                    {allMessages && allMessages.map(e => <p className="msg" key={v4()}><span className="username">{e.userId}:</span> {e.message}</p>)}
                 </div>
                 <form className="message-input-box" onSubmit={(e) => {sendMessage(e)}}>
                     <input type="text" name="message" id="message" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
                     <button>Send</button>
                 </form>
             </div>
-            <button onClick={backToPickRoomScreen}>Back</button>
+            <button className="btn-back" onClick={backToPickRoomScreen}>Back</button>
         </div>
     )
 }

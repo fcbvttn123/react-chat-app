@@ -32,48 +32,36 @@ button:hover {
 
 /* Sign In Screen */
 
-.sign-in-screen h1 {
+.signin-screen {
+    width: 100%;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.signin-screen p {
+    margin: 1rem 0;
+}
+
+.btn-signin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5rem;
     background-color: var(--main-blue-color);
-    color: white;
-    display: grid;
-    place-content: center;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    font-size: 2rem;
 }
 
-.sign-in-screen :is(form, .sign-up-container) {
-    margin-left: 1rem;
+.btn-signin p {
+    font-size: 1.5rem;
 }
 
-.sign-in-screen form input[type="password"] {
-    margin: .5rem 0;
-}
-
-.sign-in-screen form button {
-    width: 100px;
-    display: grid;
-    place-content: center;
-}
-
-.sign-in-screen .sign-up-container button {
-    padding: 0;
+.signin-screen img {
+    width: 60px;
     background-color: white;
-    color: black;
-    border:  none;
-    margin-left: 1rem;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.sign-in-screen .sign-up-container button:hover {
-    color: blue;
-}
-
-.invalid-credentials {
-    margin-top: 1rem;
-    margin-left: 1rem;
-    color: red;
+    padding: .5rem;
 }
 
 
@@ -110,6 +98,13 @@ button:hover {
 
 /* Room ID Screen */
 
+.main-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .main-screen .main-header {
     background-color: var(--main-blue-color);
     color: white;
@@ -118,6 +113,7 @@ button:hover {
     padding: 1rem;
     margin-bottom: 1rem;
     font-size: 2rem;
+    width: 100%;
 }
 
 .main-screen .room-id-input-box {
@@ -147,15 +143,27 @@ button:hover {
     width: 100%;
 }
 
+.main-screen .btn-signout {
+    margin-top: 5rem;
+}
+
 
 
 
 /* Room Chat Box Screen */
 
+.room-chat-box {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .chat-box-component {
     width: 400px;
     margin: 0 auto;
-    height: 300px;
 
     display: flex;
     flex-direction: column;
@@ -173,22 +181,31 @@ button:hover {
 
 .chat-box-component form input {
     width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .chat-box-component form button {
     width: 50px;
     display: grid;
     place-content: center;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .chat-box-component form :is(input, button) {
     margin: 0;
 }
 
-.chat-box-component .display-msg {
-    overflow-y: scroll;
-}
-
 .chat-box-component .display-msg p {
     margin-bottom: 5px;
+}
+
+.chat-box-component .display-msg .username {
+    font-weight: bolder;
+}
+
+.room-chat-box .btn-back {
+    margin: 5rem 0;
 }

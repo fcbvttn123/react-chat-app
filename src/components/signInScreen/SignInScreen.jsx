@@ -3,6 +3,8 @@ import { signInWithPopup } from "firebase/auth";
 
 import { useState } from "react"
 
+import googleLogo from "../../assets/google.png"
+
 export function SignInScreen(props) {
     function signInWithGoogle() {
         signInWithPopup(auth, provider)
@@ -25,6 +27,13 @@ export function SignInScreen(props) {
           });
       }
     return (
-        <button onClick={signInWithGoogle}>Sign In</button>
+      <div className="signin-screen">
+        <h1 className="main-header">Chat App</h1>
+        <p>Click the below button to sign in with your Google account !</p>
+        <button className="btn-signin" onClick={signInWithGoogle}>
+          <img src={googleLogo} alt="" />
+          <p>Sign In with your Google Account</p>
+        </button>
+      </div>
     )
 }

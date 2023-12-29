@@ -9,13 +9,13 @@ import {Room} from "./components/roomScreen/Room"
 function App() {
   const [currentLoggedInData, setCurrentLoggedInData] = useState(JSON.parse(localStorage.getItem("react-chat-app-currentlyLoggedInEmail")))
 
-  function getCurrentLoggedInData(displayName) {
-    setCurrentLoggedInData(displayName)
+  function getCurrentLoggedInData(userData) {
+    setCurrentLoggedInData(userData)
   }
 
   return (
     <main className='main-screen'>
-      {currentLoggedInData ? <Room username={currentLoggedInData.displayName}/> : <SignInScreen getUserName={getCurrentLoggedInData} />}
+      {currentLoggedInData ? <Room username={currentLoggedInData.name}/> : <SignInScreen getUserName={getCurrentLoggedInData} />}
     </main>
   )
 }

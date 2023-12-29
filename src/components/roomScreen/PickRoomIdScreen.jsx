@@ -2,11 +2,13 @@ import { useState } from "react"
 
 export function PickRoomIdScreen(props) {
     const [inputValue, setInputValue] = useState("")
+    
     function submitRoomId(e) {
         e.preventDefault()
         inputValue != "" && props.submitRoomId(inputValue)
         setInputValue("")
     }
+    
     return (
         <>
             <h1 className="main-header">Chat App</h1>

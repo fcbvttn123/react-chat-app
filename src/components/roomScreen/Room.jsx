@@ -31,6 +31,7 @@ export function Room(props) {
           time: new Date().getTime()
         }
       })
+
       setCurrentRoom(roomId)
     }
 

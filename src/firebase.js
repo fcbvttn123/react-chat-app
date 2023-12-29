@@ -25,3 +25,14 @@ export const roomsFireStoreCollection = collection(db, "rooms")
 
 import {getDatabase, ref, set, onValue} from "firebase/database"
 export const realtimeDb = getDatabase()
+
+
+
+
+// Authentication 
+
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+
+export const auth = getAuth(app);
+
+export const provider = new GoogleAuthProvider();

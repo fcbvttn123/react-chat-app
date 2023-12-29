@@ -7,17 +7,15 @@ import { SignInScreen } from './components/signInScreen/SignInScreen'
 import {Room} from "./components/roomScreen/Room"
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState("sign-in-screen")
-  const [username, setUsername] = useState(null)
+  const [currentLoggedInData, setCurrentLoggedInData] = useState(JSON.parse(localStorage.getItem("react-chat-app-currentlyLoggedInEmail")))
 
-  function handleScreen(screen, username) {
-    setCurrentScreen(screen)
-    screen == "room-screen" && setUsername(username)
+  function getCurrentLoggedInData(userData) {
+    setCurrentLoggedInData(userData)
   }
 
   return (
     <main className='main-screen'>
-      {currentScreen == "room-screen" ? <Room username={username}/> : <SignInScreen handleScreen={handleScreen} />}
+      {currentLoggedInData ? <Room username={currentLoggedInData.name}/> : <SignInScreen getUserName={getCurrentLoggedInData} />}
     </main>
   )
 }

@@ -1,19 +1,30 @@
-import { SignInForm } from "./SignInForm"
-import { SignUpForm } from "./SignUpForm"
+import { auth, provider } from "../../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 import { useState } from "react"
 
 export function SignInScreen(props) {
-
-    const [currentForm, setCurrentForm] = useState("sign-in-form")
-
-    function changeForm(formName) {
-        setCurrentForm(formName)
-    }
-
+    function signInWithGoogle() {
+        signInWithPopup(auth, provider)
+          .then((res) => {
+            const name = res.user.displayName;
+            const email = res.user.email;
+            const avt = res.user.photoURL;
+            localStorage.setItem("react-chat-app-currentlyLoggedInEmail", JSON.stringify({
+                email, 
+                name
+            }))
+            props.getUserName({
+                email, 
+                name
+            })
+          })
+      
+          .catch((err) => {
+            alert(err);
+          });
+      }
     return (
-        <div className="sign-in-screen">
-            {currentForm == "sign-in-form" ? <SignInForm changeForm={changeForm} handleScreen={props.handleScreen} /> : <SignUpForm changeForm={changeForm} />}
-        </div>
+        <button onClick={signInWithGoogle}>Sign In</button>
     )
 }

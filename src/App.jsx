@@ -7,7 +7,9 @@ import { SignInScreen } from './components/signInScreen/SignInScreen'
 import {Room} from "./components/roomScreen/Room"
 
 function App() {
-  const [currentLoggedInData, setCurrentLoggedInData] = useState(JSON.parse(localStorage.getItem("react-chat-app-currentlyLoggedInEmail")))
+  const [currentLoggedInData, setCurrentLoggedInData] = useState(
+    localStorage.getItem("react-chat-app-currentlyLoggedInEmail") && JSON.parse(localStorage.getItem("react-chat-app-currentlyLoggedInEmail"))
+  )
 
   function getCurrentLoggedInData(userData) {
     setCurrentLoggedInData(userData)
@@ -15,7 +17,7 @@ function App() {
 
   return (
     <main className='main-screen'>
-      {currentLoggedInData ? <Room username={currentLoggedInData.name}/> : <SignInScreen getUserName={getCurrentLoggedInData} />}
+      {currentLoggedInData ? <Room username={currentLoggedInData.name} setCurrentLoggedInData={setCurrentLoggedInData}/> : <SignInScreen getUserName={getCurrentLoggedInData} />}
     </main>
   )
 }

@@ -8,6 +8,11 @@ export function PickRoomIdScreen(props) {
         inputValue != "" && props.submitRoomId(inputValue)
         setInputValue("")
     }
+
+    function signOut() {
+        localStorage.setItem("react-chat-app-currentlyLoggedInEmail", "")
+        props.setCurrentLoggedInData("")
+    }
     
     return (
         <>
@@ -17,6 +22,7 @@ export function PickRoomIdScreen(props) {
                 <input type="text" name="room-id" id="room-id" onChange={e => setInputValue(e.target.value)} value={inputValue}/>
                 <button>Enter Chat</button>
             </form>
+            <button onClick={signOut}>Sign Out</button>
         </>
     )
 }

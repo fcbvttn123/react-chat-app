@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react"
-
-import { roomsFireStoreCollection, db } from "../../firebase"
-import { setDoc, doc, snapshotEqual } from "firebase/firestore"
-
 import { v4 } from "uuid"
 
 // Realtime DB
@@ -40,6 +36,10 @@ export function RoomChatScreen(props) {
         })
     }
 
+    function backToPickRoomScreen() {
+        props.setCurrentRoom(null)
+    }
+
     useEffect(() => {
         getMessages()
     }, [])
@@ -56,6 +56,7 @@ export function RoomChatScreen(props) {
                     <button>Send</button>
                 </form>
             </div>
+            <button onClick={backToPickRoomScreen}>Back</button>
         </div>
     )
 }

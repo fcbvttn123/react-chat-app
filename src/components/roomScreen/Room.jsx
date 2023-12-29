@@ -49,9 +49,9 @@ export function Room(props) {
     return (
       <>
         {currentRoom ? (
-          <RoomChatScreen roomId={currentRoom} userId={currentUser}/>
+          <RoomChatScreen roomId={currentRoom} userId={currentUser} setCurrentRoom={setCurrentRoom}/>
         ) : (
-          <PickRoomIdScreen submitRoomId={checkRoomId} />
+          <PickRoomIdScreen submitRoomId={checkRoomId} setCurrentLoggedInData={props.setCurrentLoggedInData} />
         )}
       </>
     );

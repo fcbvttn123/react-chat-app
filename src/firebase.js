@@ -26,6 +26,15 @@ export const roomsFireStoreCollection = collection(db, "rooms")
 import {getDatabase, ref, set, onValue} from "firebase/database"
 export const realtimeDb = getDatabase()
 
+// DB Rule
+
+  // {
+  //   "rules": {
+  //     ".read": "now < 1705208400000",  // 2024-1-14
+  //     ".write": "now < 1705208400000",  // 2024-1-14
+  //   }
+  // }
+
 
 
 

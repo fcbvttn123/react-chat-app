@@ -15,7 +15,7 @@ export function RoomChatScreen(props) {
         pushNewMessage({
             userId: props.userId, 
             message: inputValue, 
-            time: new Date().getTime()
+            time: Date.now()
         })
         setInputValue("")
     }
